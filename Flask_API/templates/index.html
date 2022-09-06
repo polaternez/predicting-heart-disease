@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+</head>
+
+<body>
+ <div class="login">
+	<h1>Predict Heart Disease</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict') }}" method="post">
+      <input type="text" name="Age" placeholder="Age of the Patient [years]" required="required"/>
+      <select name="Sex">
+        <option value="" disabled selected>Choose sex of the patient...</option>
+        <option value="F">Female</option>
+        <option value="M">Male</option>
+      </select>
+      <select name="ChestPainType">
+        <option value="" disabled selected>Choose chest pain type...</option>
+        <option value="TA">TA: Typical Angina</option>
+        <option value="ATA">ATA: Atypical Angina</option>
+        <option value="NAP">NAP: Non-Anginal Pain</option>
+        <option value="ASY">ASY: Asymptomatic</option>
+      </select>
+      <input type="text" name="RestingBP" placeholder="Resting Blood Pressure [mm/Hg]" required="required"/>
+      <input type="text" name="Cholesterol" placeholder="Serum Cholesterol [mm/dl]" required="required"/>
+      <select name="FastingBS">
+        <option value="" disabled selected>Choose fasting blood sugar...</option>
+        <option value="1">> 120 mg/dl</option>
+        <option value="0">otherwise</option>
+      </select>
+      <select name="RestingECG">
+        <option value="" disabled selected>Choose resting electrocardiogram results...</option>
+        <option value="Normal">Normal: Normal</option>
+        <option value="ST">ST: having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</option>
+        <option value="LVH">LVH: showing probable or definite left ventricular hypertrophy by Estes' criteria</option>
+      </select>
+      <input type="text" name="MaxHR" placeholder="Maximum Heart Rate Achieved" required="required"/>
+      <select name="ExerciseAngina">
+        <option value="" disabled selected>Choose exercise-induced angina...</option>
+        <option value="Y">Yes</option>
+        <option value="N">No</option>
+      </select>
+      <input type="text" name="Oldpeak" placeholder="Oldpeak = ST [Numeric value measured in depression]" required="required"/>
+      <select name="ST_Slope">
+        <option value="" disabled selected>Choose the slope of the peak exercise ST segment...</option>
+        <option value="Up">Up: upsloping</option>
+        <option value="Flat">Flat: flat</option>
+        <option value="Down">Down: downsloping</option>
+      </select>
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+    </form>
+
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
