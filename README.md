@@ -27,7 +27,7 @@ I looked at the distributions of the data and the value counts for the various c
 
 ## Model Building 
 
-First, We split the data into train and test sets with a test size of 20%. After that create transformation pipeline with this pipeline, encode categorical features 
+First, we split the data into train and test sets with a test size of 20%. After that create transformation pipeline with this pipeline, encode categorical features 
 and standardize numeric features.   
 
 We try five distinct models and evaluate them using accuracy. Then we get the following results:
