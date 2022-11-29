@@ -39,6 +39,7 @@ Thus, we choose the Random Forest model, it has the highest accuracy, then fine-
 ## Productionization 
 In this step, I created the UI with the Flask. API endpoint help receives a request and returns the results of the heart disease classification.
 
+![alt text](https://github.com/polaternez/heart_disease_proj/blob/data_eda/images/heart_disease_api.png "Predict Heart Disease")
 
 
 
