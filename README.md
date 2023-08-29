@@ -1,5 +1,5 @@
 # Heart Disease Predictor: Project Overview  
-* This tool was created to help people by predicting heart disease early
+This tool was created to help people by predicting heart disease early
 * Take Heart Failure Prediction Dataset from Kaggle.
 * Exploratory Data Analysis (EDA)
 * Build transformation pipeline
