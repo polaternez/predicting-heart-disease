@@ -12,12 +12,12 @@ class PredictPipeline:
 
     def predict(self, features):
         try:
-            model_path = os.path.join("artifacts", "model.pkl")
             preprocessor_path = os.path.join('artifacts', 'preprocessor.pkl')
+            model_path = os.path.join("artifacts", "model.pkl")
 
             print("Before Loading")
-            model = load_object(file_path=model_path)
             preprocessor = load_object(file_path=preprocessor_path)
+            model = load_object(file_path=model_path)
 
             print("After Loading")
             data_scaled = preprocessor.transform(features)
@@ -31,35 +31,38 @@ class PredictPipeline:
 
 
 class CustomData:
-    def __init__(self, 
-                gender: str,
-                race_ethnicity: str,
-                parental_level_of_education: str,
-                lunch: str,
-                test_preparation_course: str,
-                reading_score: int,
-                writing_score: int):
-
-        self.gender = gender
-        self.race_ethnicity = race_ethnicity
-        self.parental_level_of_education = parental_level_of_education
-        self.lunch = lunch
-        self.test_preparation_course = test_preparation_course
-        self.reading_score = reading_score
-        self.writing_score = writing_score
+    def __init__(self, Age: int, Sex: str, ChestPainType: str, RestingBP: int,
+                 Cholesterol: int, FastingBS: int, RestingECG: str, MaxHR: int,
+                 ExerciseAngina: str, Oldpeak: int, ST_Slope: str):
+        
+        self.Age = Age
+        self.Sex = Sex
+        self.ChestPainType = ChestPainType
+        self.RestingBP = RestingBP
+        self.Cholesterol = Cholesterol
+        self.FastingBS = FastingBS
+        self.RestingECG = RestingECG
+        self.MaxHR = MaxHR
+        self.ExerciseAngina = ExerciseAngina
+        self.Oldpeak = Oldpeak
+        self.ST_Slope = ST_Slope
 
     def get_data_as_data_frame(self):
         try:
             custom_data_input_dict = {
-                "gender": [self.gender],
-                "race_ethnicity": [self.race_ethnicity],
-                "parental_level_of_education": [self.parental_level_of_education],
-                "lunch": [self.lunch],
-                "test_preparation_course": [self.test_preparation_course],
-                "reading_score": [self.reading_score],
-                "writing_score": [self.writing_score],
+                "Age": [self.Age],
+                "Sex": [self.Sex],
+                "ChestPainType": [self.ChestPainType], 
+                "RestingBP": [self.RestingBP], 
+                "Cholesterol": [self.Cholesterol], 
+                "FastingBS": [self.FastingBS], 
+                "RestingECG": [self.RestingECG],
+                "MaxHR": [self.MaxHR], 
+                "ExerciseAngina": [self.ExerciseAngina],
+                "Oldpeak": [self.Oldpeak], 
+                "ST_Slope": [self.ST_Slope]
             }
-
+            
             return pd.DataFrame(custom_data_input_dict)
 
         except Exception as e:
