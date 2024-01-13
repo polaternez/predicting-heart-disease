@@ -6,9 +6,7 @@ from flask import Flask, request, render_template
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 
-application = Flask(__name__)
-
-app = application
+app = Flask(__name__)
 
 # Route for a home page
 @app.route('/')
@@ -35,14 +33,15 @@ def predictdata():
             ST_Slope=request.form.get('ST_Slope'),
         )
 
-        pred_df = data.get_data_as_data_frame()
-
+        pred_df = data.get_data_as_dataframe()
         print(pred_df)
         
         print("Before Prediction")
+
         predict_pipeline = PredictPipeline()
 
         print("Mid Prediction")
+
         prediction = predict_pipeline.predict(pred_df)
 
         print("After Prediction")

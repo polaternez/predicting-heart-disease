@@ -8,13 +8,13 @@ from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 
 from dataclasses import dataclass
-from src.exception import CustomException
-from src.logger import logging
-from src.utils import save_object
+from src.utils.exception import CustomException
+from src.utils.logger import logging
+from src.utils.helper import save_object
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join('artifacts', "preprocessor.pkl")
+    preprocessor_obj_file_path = os.path.join('artifacts\preprocessing', "preprocessor.pkl")
 
 
 class DataTransformation:

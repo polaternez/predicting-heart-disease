@@ -16,13 +16,13 @@ from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
 
 from dataclasses import dataclass
-from src.exception import CustomException
-from src.logger import logging
-from src.utils import save_object, evaluate_models
+from src.utils.exception import CustomException
+from src.utils.logger import logging
+from src.utils.helper import save_object, evaluate_models
 
 @dataclass
 class ModelTrainerConfig:
-    trained_model_file_path = os.path.join("artifacts", "model.pkl")
+    trained_model_file_path = os.path.join("artifacts\models", "model.pkl")
 
 
 class ModelTrainer:

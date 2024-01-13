@@ -2,8 +2,8 @@ import os
 import sys
 import pandas as pd
 
-from src.exception import CustomException
-from src.utils import load_object
+from src.utils.exception import CustomException
+from src.utils.helper import load_object
 
 
 class PredictPipeline:
@@ -12,14 +12,16 @@ class PredictPipeline:
 
     def predict(self, features):
         try:
-            preprocessor_path = os.path.join('artifacts', 'preprocessor.pkl')
-            model_path = os.path.join("artifacts", "model.pkl")
+            preprocessor_path = os.path.join('artifacts\preprocessing', 'preprocessor.pkl')
+            model_path = os.path.join("artifacts\models", "model.pkl")
 
             print("Before Loading")
+
             preprocessor = load_object(file_path=preprocessor_path)
             model = load_object(file_path=model_path)
 
             print("After Loading")
+            
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
 
@@ -47,7 +49,7 @@ class CustomData:
         self.Oldpeak = Oldpeak
         self.ST_Slope = ST_Slope
 
-    def get_data_as_data_frame(self):
+    def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
                 "Age": [self.Age],
