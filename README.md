@@ -11,8 +11,12 @@ Note: This project was made for educational purposes.
 ## Code and Resources Used 
 **Python Version:** 3.8  
 **Packages:** numpy, pandas, matplotlib, seaborn, sklearn, xgboost, flask, json, pickle  
-**For Flask API Requirements:**  ```pip install -r requirements.txt```  
 **For Dataset:** https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction 
+
+**Create Anaconda environment:** 
+- ```conda create -p venv python==3.8 -y```  
+- ```pip install -r requirements.txt```
+  
 
 ## Data Cleaning
 We take data from Kaggle. This data has already been cleared!
