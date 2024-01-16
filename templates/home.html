@@ -17,7 +17,7 @@
 	<h1>Predict Heart Disease</h1>
 
      <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict') }}" method="post">
+    <form action="{{ url_for('predictdata') }}" method="post">
       <input type="text" name="Age" placeholder="Age of the Patient [years]" required="required"/>
       <select name="Sex">
         <option value="" disabled selected>Choose sex of the patient...</option>
@@ -61,7 +61,7 @@
     </form>
 
    <br>
-   {{ prediction_text }}
+   {{ results }}
 
  </div>
 
