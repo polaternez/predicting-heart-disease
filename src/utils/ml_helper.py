@@ -31,7 +31,7 @@ def load_object(file_path):
         raise CustomException(e, sys)
 
     
-def evaluate_models(X, y, validation_data: tuple, models_dict: dict, params_dict: dict) -> dict:
+def evaluate_models(models_dict: dict, params_dict: dict, X, y, validation_data: tuple) -> dict:
     try:
         report = {}
 
@@ -46,12 +46,12 @@ def evaluate_models(X, y, validation_data: tuple, models_dict: dict, params_dict
             model.fit(X, y)
 
             # predictions
-            y_train_pred = model.predict(X)
-            y_test_pred = model.predict(validation_data[0])
+            y_pred_train = model.predict(X)
+            y_pred_test = model.predict(validation_data[0])
 
             # evaluation results
-            train_model_score = accuracy_score(y, y_train_pred)
-            test_model_score = accuracy_score(validation_data[1], y_test_pred)
+            train_model_score = accuracy_score(y, y_pred_train)
+            test_model_score = accuracy_score(validation_data[1], y_pred_test)
 
             report[model_name] = test_model_score
 

@@ -1,9 +1,10 @@
 import os
 import sys
+from pathlib import Path
 import pandas as pd
 
 from src.utils.exception import CustomException
-from src.utils.helper import load_object
+from src.utils.ml_helper import load_object
 
 
 class PredictPipeline:
@@ -12,8 +13,8 @@ class PredictPipeline:
 
     def predict(self, features):
         try:
-            preprocessor_path = os.path.join('artifacts\preprocessing', 'preprocessor.pkl')
-            model_path = os.path.join("artifacts\models", "model.pkl")
+            preprocessor_path = Path('artifacts/preprocessing/preprocessor.pkl')
+            model_path = Path("artifacts/models/model.pkl")
 
             print("Before Loading")
 
@@ -22,10 +23,10 @@ class PredictPipeline:
 
             print("After Loading")
             
-            data_scaled = preprocessor.transform(features)
-            preds = model.predict(data_scaled)
+            data_transformed = preprocessor.transform(features)
+            prediction = model.predict(data_transformed)
 
-            return preds
+            return prediction
         
         except Exception as e:
             raise CustomException(e, sys)

@@ -19,6 +19,7 @@ def predictdata():
         return render_template('home.html')
     
     else:
+        # Unbox data from request form
         data = CustomData(
             Age=float(request.form.get('Age')),
             Sex=request.form.get('Sex'),
@@ -33,8 +34,8 @@ def predictdata():
             ST_Slope=request.form.get('ST_Slope'),
         )
 
-        pred_df = data.get_data_as_dataframe()
-        print(pred_df)
+        data_df = data.get_data_as_dataframe()
+        print(data_df)
         
         print("Before Prediction")
 
@@ -42,7 +43,7 @@ def predictdata():
 
         print("Mid Prediction")
 
-        prediction = predict_pipeline.predict(pred_df)
+        prediction = predict_pipeline.predict(data_df)
 
         print("After Prediction")
 
@@ -56,4 +57,4 @@ def predictdata():
     
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)        
+    app.run(host="0.0.0.0", port=5000, debug=True)        
