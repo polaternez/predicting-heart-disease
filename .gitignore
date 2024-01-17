@@ -121,7 +121,6 @@ celerybeat.pid
 
 # Environments
 catboost_info/
-artifacts/
 .env
 .venv
 env/

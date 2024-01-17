@@ -13,6 +13,7 @@ application = Flask(__name__)
 def index():
     return render_template('index.html') 
 
+
 @application.route('/predictdata', methods=['GET', 'POST'])
 def predictdata():
     if request.method == 'GET':
