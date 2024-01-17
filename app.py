@@ -6,14 +6,14 @@ from flask import Flask, request, render_template
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Route for a home page
-@app.route('/')
+@application.route('/')
 def index():
     return render_template('index.html') 
 
-@app.route('/predictdata', methods=['GET', 'POST'])
+@application.route('/predictdata', methods=['GET', 'POST'])
 def predictdata():
     if request.method == 'GET':
         return render_template('home.html')
@@ -57,4 +57,4 @@ def predictdata():
     
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)        
+    application.run(host="0.0.0.0", port=5000)        
