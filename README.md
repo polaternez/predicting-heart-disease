@@ -10,7 +10,7 @@ Note: This project was made for educational purposes.
 
 ## Code and Resources Used 
 **Python Version:** 3.8  
-**Packages:** numpy, pandas, matplotlib, seaborn, sklearn, xgboost, flask, json, pickle  
+**Packages:** numpy, pandas, matplotlib, seaborn, scikit-learn, xgboost, flask, json, pickle  
 **For Dataset:** https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction 
 
 **Create Anaconda environment:** 
