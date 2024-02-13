@@ -7,7 +7,7 @@ This project aims to facilitate early prediction of heart disease to aid in proa
 - Trains and evaluates various machine learning models using cross-validation.
 - Deploys a user-friendly API using Flask for heart disease prediction.
 
-Note: This project was made for educational purposes.
+Note: This project was developed for educational purposes
 
 
 ## Code and Resources
