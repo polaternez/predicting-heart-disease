@@ -12,7 +12,6 @@ from sklearn.ensemble import (
     AdaBoostClassifier,
     GradientBoostingClassifier,
 )
-
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
 
@@ -20,6 +19,7 @@ from dataclasses import dataclass
 from src.utils.exception import CustomException
 from src.utils.logger import logging
 from src.utils.ml_helper import save_object, evaluate_models
+
 
 @dataclass
 class ModelTrainerConfig:
@@ -33,7 +33,6 @@ class ModelTrainer:
     def initiate_model_trainer(self, train_array, test_array):
         try:
             logging.info("Split data into training and testing sets")
-
             # Split data into training and testing sets
             X_train, X_test, y_train, y_test = (
                 train_array[:, :-1],
@@ -54,7 +53,6 @@ class ModelTrainer:
                 "AdaBoost Classifier": AdaBoostClassifier(random_state=42),
                 "Gradient Boosting": GradientBoostingClassifier(random_state=42),
             }
-
             params_dict = {
                 "XGBClassifier": {
                     'learning_rate': [0.01, 0.03, 0.1, 0.3],
@@ -71,7 +69,6 @@ class ModelTrainer:
             }
 
             logging.info(f"Starting model performance assessment...")
-
             # Evaluate all models
             model_report = evaluate_models(models_dict=models_dict, params_dict=params_dict,
                                            X=X_train, y=y_train,
@@ -97,13 +94,10 @@ class ModelTrainer:
                 file_path=self.model_trainer_config.trained_model_file_path,
                 obj=best_model
             )
-
             logging.info("Model saved")
 
             predicted = best_model.predict(X_test)
             acc_score = accuracy_score(y_test, predicted)
-            
             return acc_score
-            
         except Exception as e:
             raise CustomException(e, sys)

@@ -13,6 +13,7 @@ from src.utils.exception import CustomException
 from src.utils.logger import logging
 from src.utils.ml_helper import save_object
 
+
 @dataclass
 class DataTransformationConfig:
     preprocessor_file_path: Path = Path('artifacts/preprocessing/preprocessor.pkl')
@@ -37,7 +38,6 @@ class DataTransformation:
             ("imputer", SimpleImputer(strategy="median")),
             ("scaler", StandardScaler())
         ])
-
         # Define categorical pipeline
         cat_pipeline = Pipeline([
             ("imputer", SimpleImputer(strategy="most_frequent")),
@@ -48,10 +48,8 @@ class DataTransformation:
             ("num_pipeline", num_pipeline, num_cols),
             ("cat_pipelines", cat_pipeline, cat_cols)
         ])
-
         return preprocessor
     
-     
     def initiate_data_transformation(self, train_path, test_path):
         """
         Transforms data and saves the preprocessor
@@ -60,22 +58,18 @@ class DataTransformation:
             target_column = "HeartDisease"
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
-
             logging.info("Train/test data reading complete")
 
             y_train = train_df[target_column]
             X_train = train_df.drop(columns=[target_column], axis=1)
-            
             y_test = test_df[target_column]
             X_test = test_df.drop(columns=[target_column], axis=1)
 
             # Create the data preprocessor
             preprocessor = self.get_preprocessor()
-
             logging.info("Preprocessor is created")
 
             logging.info("Applying the preprocessor to the training dataframe and testing dataframe")
-
             X_train_processed = preprocessor.fit_transform(X_train)
             X_test_processed = preprocessor.transform(X_test)
 
@@ -88,7 +82,6 @@ class DataTransformation:
                 file_path=self.data_transformation_config.preprocessor_file_path,
                 obj=preprocessor
             )
-
             logging.info(f"Preprocessor saved.")
             
             return (
@@ -96,7 +89,6 @@ class DataTransformation:
                 test_arr,
                 self.data_transformation_config.preprocessor_file_path,
             )
-        
         except Exception as e:
             raise CustomException(e, sys)
 
