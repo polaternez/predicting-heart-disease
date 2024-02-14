@@ -1,7 +1,7 @@
+from flask import Flask, request, render_template
 import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from flask import Flask, request, render_template
 
 from src.pipeline.predict_pipeline import CustomData, PredictPipeline
 
@@ -18,7 +18,6 @@ def index():
 def predictdata():
     if request.method == 'GET':
         return render_template('home.html')
-    
     else:
         # Unbox data from request form
         data = CustomData(
@@ -34,19 +33,11 @@ def predictdata():
             Oldpeak=float(request.form.get('Oldpeak')),
             ST_Slope=request.form.get('ST_Slope'),
         )
-
         data_df = data.get_data_as_dataframe()
         print(data_df)
         
-        print("Before Prediction")
-
         predict_pipeline = PredictPipeline()
-
-        print("Mid Prediction")
-
         prediction = predict_pipeline.predict(data_df)
-
-        print("After Prediction")
 
         output = ""
         if prediction[0] == 0:
