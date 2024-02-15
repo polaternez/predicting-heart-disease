@@ -7,7 +7,7 @@ from sklearn.model_selection import GridSearchCV
 import dill
 import pickle
 
-from src.utils.exception import CustomException
+from heartdisease.utils.exception import CustomException
 
 
 def save_object(file_path, obj):

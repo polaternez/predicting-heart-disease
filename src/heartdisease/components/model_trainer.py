@@ -15,24 +15,19 @@ from sklearn.ensemble import (
 from xgboost import XGBClassifier
 from catboost import CatBoostClassifier
 
-from dataclasses import dataclass
-from src.utils.exception import CustomException
-from src.utils.logger import logging
-from src.utils.ml_helper import save_object, evaluate_models
-
-
-@dataclass
-class ModelTrainerConfig:
-    trained_model_file_path: Path = Path("artifacts/models/model.pkl")
+from heartdisease.entity import ModelTrainerConfig
+from heartdisease import logger
+from heartdisease.utils.exception import CustomException
+from heartdisease.utils.ml_helper import save_object, evaluate_models
 
 
 class ModelTrainer:
-    def __init__(self):
-        self.model_trainer_config = ModelTrainerConfig()
+    def __init__(self, config: ModelTrainerConfig):
+        self.model_trainer_config = config
     
     def initiate_model_trainer(self, train_array, test_array):
         try:
-            logging.info("Split data into training and testing sets")
+            logger.info("Split data into training and testing sets")
             # Split data into training and testing sets
             X_train, X_test, y_train, y_test = (
                 train_array[:, :-1],
@@ -68,7 +63,7 @@ class ModelTrainer:
                 "Gradient Boosting": {},
             }
 
-            logging.info(f"Starting model performance assessment...")
+            logger.info(f"Starting model performance assessment...")
             # Evaluate all models
             model_report = evaluate_models(models_dict=models_dict, params_dict=params_dict,
                                            X=X_train, y=y_train,
@@ -87,14 +82,14 @@ class ModelTrainer:
             if best_model_score < 0.6:
                 raise CustomException("No model achieved satisfactory performance.")
             
-            logging.info(f"The best model found on both the training and testing dataset")
+            logger.info(f"The best model found on both the training and testing dataset")
 
             # Save the best model
             save_object(
-                file_path=self.model_trainer_config.trained_model_file_path,
+                file_path=self.model_trainer_config.trained_model_path,
                 obj=best_model
             )
-            logging.info("Model saved")
+            logger.info("Model saved")
 
             predicted = best_model.predict(X_test)
             acc_score = accuracy_score(y_test, predicted)
