@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
 
-from src.pipeline.predict_pipeline import CustomData, PredictPipeline
+from heartdisease.pipeline.predict import CustomData, PredictPipeline
 
 
 application = Flask(__name__)
@@ -13,9 +13,8 @@ application = Flask(__name__)
 def index():
     return render_template('index.html') 
 
-
-@application.route('/predictdata', methods=['GET', 'POST'])
-def predictdata():
+@application.route('/predict', methods=['GET', 'POST'])
+def predict():
     if request.method == 'GET':
         return render_template('home.html')
     else:

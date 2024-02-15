@@ -3,8 +3,8 @@ import sys
 from pathlib import Path
 import pandas as pd
 
-from src.utils.exception import CustomException
-from src.utils.ml_helper import load_object
+from heartdisease.utils.ml_helper import load_object
+from heartdisease.utils.exception import CustomException
 
 
 class PredictPipeline:
